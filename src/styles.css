@@ -1,0 +1,59 @@
+.box-with-todoboxes{
+    width:95%;
+    height:95%;
+    background-color: bisque;
+    display:grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: auto;
+    position:absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    border-radius: 10px;
+}
+#BoxContainingAClass {
+    display: flex;
+    flex-direction: column;
+    letter-spacing: 0.05rem;
+    overflow: hidden;
+    padding:20px;
+}
+
+#title {
+    font-size:1rem;
+    font-weight: bolder;
+    text-align: center; 
+    width:300px;
+    height:30px;
+}
+.AddTask {
+    z-index: 2;
+    position: absolute;
+    bottom:5%;
+    left: 50%;
+    margin-left: -46.25px;
+
+}
+.formstyle{
+width:25%;
+height: 75%;
+background-color: rgba(255, 255, 255, 0.6);
+    position: absolute;
+    left:0;
+    right:0;
+    top:0;
+    bottom:0;
+    margin: auto;
+    border-radius: 10px;
+    padding:25px;
+}
+
+.ADDTODO {
+    z-index: 2;
+    position: absolute;
+    left: 50%;
+    margin-left: -22.08px;
+
+}
