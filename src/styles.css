@@ -1,10 +1,9 @@
-.box-with-todoboxes{
+.site-contain{
     width:95%;
-    height:95%;
+    height:100%;
     background-color: bisque;
-    display:grid;
-    grid-template-columns: 300px 300px;
-    grid-template-rows: auto;
+    display: flex;
+    flex-direction: row;
     position:absolute;
     left:0;
     right:0;
@@ -13,6 +12,13 @@
     margin: auto;
     border-radius: 10px;
 }
+.box-with-todoboxes {
+display:grid;
+    grid-template-columns: 300px 300px;
+    grid-template-rows: auto;
+    width:50%;
+    
+}
 #BoxContainingAClass {
     display: flex;
     flex-direction: column;
@@ -20,7 +26,6 @@
     overflow: hidden;
     padding:20px;
 }
-
 #title {
     font-size:1rem;
     font-weight: bolder;
@@ -56,4 +61,22 @@ background-color: rgba(255, 255, 255, 0.6);
     left: 50%;
     margin-left: -22.08px;
 
+}
+.right-side-completes {
+    
+     display: flex;
+    flex-direction: column;
+    letter-spacing: 0.05rem;
+    overflow: hidden;
+    padding:20px;
+}
+.right-side-completes #BoxContainingAClass {
+    background-color: greenyellow;
+    border-radius: 20px;
+   margin-top: 10px;
+}
+#BoxContainingAClass {
+    background-color: aliceblue;
+    border-radius: 20px;
+   margin: 10px;
 }

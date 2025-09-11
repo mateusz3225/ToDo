@@ -1,7 +1,8 @@
 //todo lists are objects
 import "./styles.css";
 import {CreateClass,fillHTMLwithToDo} from "./AddingToDo.js";
-
+let array = ['','','','',''];
+let CompleteBoxes5 = document.querySelectorAll(".queryALL");
 class Projects {
     constructor(ProjectName) {
         this.ProjectName = ProjectName;
@@ -71,3 +72,34 @@ document.addEventListener("click", function(event) {
         fillHTMLwithToDo(NewToDo);
     }
 });
+document.addEventListener("click", function(event) {
+    if (event.target.matches("#cancel")) {
+       event.target.closest('.BoxContainingAClass').remove();
+    }
+    if (event.target.matches("#complete")) {
+        const complete = event.target.closest('.BoxContainingAClass').innerHTML;
+        const completeBox = document.querySelector('.right-side-completes');
+        const completewithoutbut = complete.replace(`<button id="cancel">remove task</button>
+        <button id="complete">Mark Complete</button>`, '');
+        
+        const ArrayNeededforDOM = fillCompletes(completewithoutbut);
+        console.log(ArrayNeededforDOM, CompleteBoxes5[0],completeBox);
+        //CompleteBoxes5[0].innerHTML = ArrayNeededforDOM[0];
+        for(let i=0;i<=4;i++){
+       CompleteBoxes5[i].innerHTML= ArrayNeededforDOM[i];
+        }
+        event.target.closest('.BoxContainingAClass').remove();
+    }
+});
+
+function fillCompletes(completewithoutbutw) {
+    const String = completewithoutbutw.toString();
+    const TempArray = array;
+    console.log(String,TempArray);
+    array.splice(0,0,String);
+    array.push(TempArray);
+    array.pop();array.pop();
+    return array;
+}
+
+//TO DO: add a project html on right side + add css + add logic later 

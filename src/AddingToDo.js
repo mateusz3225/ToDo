@@ -10,11 +10,18 @@ export function fillHTMLwithToDo(NewToDo) {
     const Div = document.createElement('div');
     const Parent = document.querySelector('.box-with-todoboxes')
     Div.classList.add('BoxContainingAClass');
+    const Divlength = document.querySelectorAll('.BoxContainingAClass');
+    if(Divlength.length <= 9) {
     Parent.appendChild(Div);
     Div.innerHTML = `
-    <div id="title">${NewToDo.title}</div>
-        <div id="description">${NewToDo.description}</div>
-        <div id="dieDate">${NewToDo.dueDate}</div>
-        <div id="priority">${NewToDo.priority}</div>
+    <div id="BoxContainingAClass">
+    <div id="title">${NewToDo.title.toUpperCase()}</div>
+        <div id="description">Description: ${NewToDo.description}</div>
+        <div id="dieDate">Exp: ${NewToDo.dueDate}</div>
+        <div id="priority">Priority: ${NewToDo.priority}</div>
+        <button id="cancel">remove task</button>
+        <button id="complete">Mark Complete</button>
+        </div>
     `
+    } else {alert("Maximum of 10 tasks per project, please remove a task or create a new project");}
 }
