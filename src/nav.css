@@ -1,0 +1,55 @@
+.nav {
+    position: absolute;
+    right:0;
+    margin-left: auto;
+    background-color: white;
+    z-index: 3;
+    width:20%;
+    height:95%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: all 0.35s ease-out;
+
+}
+.slide-right {
+    width:35px;
+    height:35px;
+    position: absolute;
+    z-index:4;
+    right:395px;
+    margin-left: auto;
+    color:blue;
+    border:none;
+    font-size:2rem;
+    top:454px;
+    transition: all 0.35s ease-out;
+
+}
+.slide-right:hover{
+    cursor: pointer;
+}
+.nav-hidden {
+        position: absolute;
+    right:0;
+    margin-left: auto;
+    background-color: white;
+    z-index: 3;
+    width:2%;
+    height:95%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    transition: all 0.35s ease-out;
+}
+.slide-right-stick {
+    width:35px;
+    height:35px;
+    position: absolute;
+    z-index:4;
+    right:60px;
+    margin-left: auto;
+    color:blue;
+    border:none;
+    font-size:2rem;
+    top:454px;
+    transition: all 0.35s ease-out;
+}

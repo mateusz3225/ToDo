@@ -1,14 +1,18 @@
 //todo lists are objects
 import "./styles.css";
+import "./nav.css";
+import SlideTheNav from "./nav.js";
 import {CreateClass,fillHTMLwithToDo} from "./AddingToDo.js";
 let array = ['','','','',''];
 let CompleteBoxes5 = document.querySelectorAll(".queryALL");
 class Projects {
     constructor(ProjectName) {
         this.ProjectName = ProjectName;
+        this.ToDos = [];
     }
-
 }
+const project1 = new Projects('Project1');
+console.log(project1);
 
 export default class ToDo {
     constructor(title,description,dueDate,priority) {
@@ -18,23 +22,7 @@ export default class ToDo {
         this.priority=priority;
     }
 }
-function Display(todo) {
-    const BoxWithToDoList = document.querySelector('.box-with-todoboxes');
-    BoxWithToDoList.innerHTML= 'WiIWIWIWIWIW';
-    const DivBoxwithClass = document.createElement(`div`);
-    DivBoxwithClass.classList.add("BoxContainingAClass");
-    BoxWithToDoList.appendChild(DivBoxwithClass);
-    DivBoxwithClass.innerHTML = ` 
-    ${todo.title},
-    ${todo.description},
-    ${todo.dueDate},
-    ${todo.priority},
-    `
-}
 
-//const project1 = new ToDo('project','this will be a project','11th of may','medium');
-//console.log(project1);
-//Display(project1);
 const ButtonToAddTasks= document.querySelector('.AddTask');
 ButtonToAddTasks.addEventListener("click", () => {
     const CheckIfExist = document.querySelector('.formstyle');
@@ -101,5 +89,5 @@ function fillCompletes(completewithoutbutw) {
     array.pop();array.pop();
     return array;
 }
-
-//TO DO: add a project html on right side + add css + add logic later 
+SlideTheNav();
+//TO DO:  make project1 hold the ToDo's in array, make a hide/show button to test it, make 2 projects and do a filp between them...
