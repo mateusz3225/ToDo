@@ -22,6 +22,6 @@ export function fillHTMLwithToDo(NewToDo) {
         <button id="cancel">remove task</button>
         <button id="complete">Mark Complete</button>
         </div>
-    `
-    } else {alert("Maximum of 10 tasks per project, please remove a task or create a new project");}
+    `; return true;
+    } else {alert("Maximum of 10 tasks per project, please remove a task or create a new project"); return false;}
 }
