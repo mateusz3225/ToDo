@@ -41,6 +41,9 @@ const ButtonToAddTasks= document.querySelector('.AddTask');
 ButtonToAddTasks.addEventListener("click", () => {
     const CheckIfExist = document.querySelector('.formstyle');
     const Div = document.createElement('div');
+    if (ButtonToAddTasks.innerText === 'Add A Task') 
+        {ButtonToAddTasks.innerText = 'Close Form';} else {ButtonToAddTasks.innerText = 'Add A Task';}
+
     if(CheckIfExist === null) {
     Div.classList.add('formstyle');
     document.body.appendChild(Div);

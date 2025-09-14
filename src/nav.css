@@ -9,6 +9,8 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: all 0.35s ease-out;
+    padding-left:20px;
+    padding-top: 10px;
     
 }
 .slide-right {
@@ -16,7 +18,7 @@
     height:35px;
     position: fixed;
     z-index:4;
-    right:395px;
+    right:410px;
     margin-left: auto;
     color:blue;
     border:none;
@@ -46,10 +48,29 @@
     height:35px;
     position: fixed;
     z-index:4;
-    right:60px;
+    right:50px;
     margin-left: auto;
     border:none;
     font-size:2rem;
     top:454px;
     transition: all 0.35s ease-out;
+}
+.Load-Project, .Delete-Project-default, .Delete-Project {
+    background-color: white;
+    border: 1px solid #DDDACB;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+.create-project {
+  background-color: white;
+    border: 1px solid #DDDACB;
+    border-radius: 5px;
+    padding: 5px;
+    letter-spacing: 0.05rem;
+    margin: 5px;
+    width:94%;
+    cursor: pointer;
+    height:40px; 
 }
