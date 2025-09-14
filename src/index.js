@@ -2,6 +2,7 @@
 import "./styles.css";
 import "./nav.css";
 import SlideTheNav from "./nav.js";
+import {saveProjectsToLocalStorage,getProjectsFromLocalStorage} from "./localstoragefunc.js";
 import {CreateProjectDOM} from "./createproject.js";
 import {CreateClass,fillHTMLwithToDo,fillHTMLwithCompletedTasks} from "./AddingToDo.js";
 let array = ['','','','',''];
@@ -81,6 +82,7 @@ document.addEventListener("click", function(event) {
        
        const item = fillHTMLwithToDo(NewToDo);
        if (item !== false) { Title.value = ToDocounting(); };
+       saveProjectsToLocalStorage(ProjectStorage);
    }
 });
 
@@ -128,6 +130,7 @@ document.addEventListener("click", function(event) {
         console.log(currentCompleteTasks)
         
         event.target.closest('.BoxContainingAClass').remove();
+        saveProjectsToLocalStorage(ProjectStorage);
     }
     //Complete button//
 });
@@ -156,6 +159,7 @@ CreateProjButton.addEventListener("click", () => {
     const box = document.querySelector('.box-with-todoboxes');
     box.innerHTML = '';
     i=2;
+    saveProjectsToLocalStorage(ProjectStorage);
    }
    
 });
@@ -203,3 +207,11 @@ document.addEventListener("click", function(event) {
         i=2; 
     }
 });
+
+
+const tempbutton = document.querySelector('.temp-button');
+tempbutton.addEventListener('click',()=>{
+    saveProjectsToLocalStorage(ProjectStorage);
+    //localStorage.clear();
+});
+
