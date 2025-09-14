@@ -200,5 +200,3 @@ document.addEventListener("click", function(event) {
         i=2; 
     }
 });
-
-// bug when Completeting task that is loaded in another project with the same name it adds the whole array to the CompleteTasks of that project
