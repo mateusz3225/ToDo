@@ -15,7 +15,7 @@ export function fillHTMLwithToDo(NewToDo) {
     Parent.appendChild(Div);
     Div.innerHTML = `
     <div id="BoxContainingAClass">
-    <div id="title">${NewToDo.title.toUpperCase()}</div>
+    <div id="title">${NewToDo.title}</div>
         <div id="description">Description: ${NewToDo.description}</div>
         <div id="dieDate">Exp: ${NewToDo.dueDate}</div>
         <div id="priority">Priority: ${NewToDo.priority}</div>
@@ -24,4 +24,11 @@ export function fillHTMLwithToDo(NewToDo) {
         </div>
     `; return true;
     } else {alert("Maximum of 10 tasks per project, please remove a task or create a new project"); return false;}
+}
+export function fillHTMLwithCompletedTasks(CompleteToDo) {
+    const QUERYALL = document.querySelectorAll('.right-side-completes div');
+    for (let Task of CompleteToDo) {
+        QUERYALL[CompleteToDo.indexOf(Task)].innerHTML = Task;
+
+    }
 }

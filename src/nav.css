@@ -1,5 +1,5 @@
 .nav {
-    position: absolute;
+    position: fixed;
     right:0;
     margin-left: auto;
     background-color: white;
@@ -9,12 +9,12 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: all 0.35s ease-out;
-
+    
 }
 .slide-right {
     width:35px;
     height:35px;
-    position: absolute;
+    position: fixed;
     z-index:4;
     right:395px;
     margin-left: auto;
@@ -29,7 +29,7 @@
     cursor: pointer;
 }
 .nav-hidden {
-        position: absolute;
+        position: fixed;
     right:0;
     margin-left: auto;
     background-color: white;
@@ -39,15 +39,15 @@
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
     transition: all 0.35s ease-out;
+
 }
 .slide-right-stick {
     width:35px;
     height:35px;
-    position: absolute;
+    position: fixed;
     z-index:4;
     right:60px;
     margin-left: auto;
-    color:blue;
     border:none;
     font-size:2rem;
     top:454px;

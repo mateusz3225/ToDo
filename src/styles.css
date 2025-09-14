@@ -1,7 +1,7 @@
 .site-contain{
-    width:99%;
+    width:100%;
     height:100%;
-    background-color: bisque;
+    background-color: #DDDACB;
     display: flex;
     flex-direction: row;
     position:absolute;
@@ -29,17 +29,8 @@ display:grid;
 #title {
     font-size:1rem;
     font-weight: bolder;
-    text-align: center; 
     width:300px;
     height:30px;
-}
-.AddTask {
-    z-index: 2;
-    position: absolute;
-    bottom:5%;
-    left: 50%;
-    margin-left: -46.25px;
-
 }
 .formstyle{
 width:25%;
@@ -49,10 +40,23 @@ background-color: rgba(255, 255, 255, 0.6);
     left:0;
     right:0;
     top:0;
-    bottom:0;
+    bottom:100px;
     margin: auto;
     border-radius: 10px;
     padding:25px;
+    letter-spacing: 0.05rem;
+}
+.flex-description {
+    display: flex;
+    align-items: center;
+    gap:5px;
+}
+.description {
+    box-sizing: border-box;
+    resize: none;
+    width:50%;
+    height:50px;
+    
 }
 
 .ADDTODO {
@@ -71,7 +75,7 @@ background-color: rgba(255, 255, 255, 0.6);
     padding:20px;
 }
 .right-side-completes #BoxContainingAClass {
-    background-color: greenyellow;
+    background-color: #CBDF80;
     border-radius: 20px;
    margin-top: 10px;
 }
@@ -81,5 +85,33 @@ background-color: rgba(255, 255, 255, 0.6);
    margin: 10px;
 }
 body {
-    overflow:hidden;
+    overflow-y:auto;
+    overflow-x: hidden;
+    background-color: #DDDACB;
+}
+#cancel, #complete {
+    background-color: white;
+    border: 1px solid #DDDACB;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+    cursor: pointer;
+}
+.AddTask {
+    letter-spacing: 0.05rem;
+    padding: 20px 100px;
+    font-size:1.2rem;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+     z-index: 2;
+    position: fixed;
+    left: 50%;
+    margin-left: -159.1px;
+    bottom: 5%;
+    border-radius: 10px;
+}
+.queryALL {
+    overflow-y: auto;
+    
 }
