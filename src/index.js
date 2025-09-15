@@ -151,18 +151,14 @@ document.addEventListener("click", function(event) {
             ''
         );
 
+
         
-        if (selectedProject === 'Project1') {
-            project1.CompleteTasks.push(completewithoutbut);
-            project1.ToDos = project1.ToDos.filter(todo =>
-                todo.title !== event.target.closest('.BoxContainingAClass').querySelector('#title').innerText
-            );
-        } else {
+         
             ProjectStorage[selectedProject].CompleteTasks.push(completewithoutbut);
             ProjectStorage[selectedProject].ToDos = ProjectStorage[selectedProject].ToDos.filter(todo =>
                 todo.title !== event.target.closest('.BoxContainingAClass').querySelector('#title').innerText
             );
-        }
+        
 
 
         if (ProjectStorage[selectedProject].CompleteTasks.length > 5) {
