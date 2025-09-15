@@ -8,6 +8,35 @@ import {CreateClass,fillHTMLwithToDo,fillHTMLwithCompletedTasks} from "./AddingT
 let array = ['','','','',''];
 export let i=2;
 let CompleteBoxes5 = document.querySelectorAll(".queryALL");
+
+
+//page load
+window.onload = function() {
+    const retrievedObject = {};
+    for (let key in localStorage) {
+        if (localStorage.hasOwnProperty(key)) {
+            console.log(JSON.parse(key));
+                retrievedObject[JSON.parse(key)] = JSON.parse(localStorage.getItem(key));
+            } };
+    if (retrievedObject) {
+        for (const projectName in retrievedObject) {
+            
+            const project = new Projects(projectName);
+            project.ToDos = retrievedObject[projectName].ToDos || [];
+            project.CompleteTasks = retrievedObject[projectName].CompleteTasks || [];
+            ProjectStorage[projectName] = project;
+            CreateProjectDOM(projectName);
+        }
+    }
+    for(let j=0;j<ProjectStorage[selectedProject].ToDos.length;j++) {
+        fillHTMLwithToDo(ProjectStorage[selectedProject].ToDos[j]);
+        }
+        fillHTMLwithCompletedTasks(ProjectStorage[selectedProject].CompleteTasks);
+       
+};
+
+
+
 //Project storage
 const ProjectStorage = {};
 //
@@ -26,8 +55,22 @@ export class Projects {
         ProjectStorage[ProjectName] = this;
     }
 }
-export const project1 = new Projects('Project1');
-ProjectStorage['Project1'] = project1;
+for (let key in localStorage) {
+    if (localStorage.hasOwnProperty(key)) {
+        console.log(key, localStorage.getItem(key));
+    }
+}
+
+ if (!localStorage.getItem(JSON.stringify('Project1'))) {
+     const project1 = new Projects('Project1');
+    ProjectStorage['Project1'] = project1;
+    const Nav = document.querySelector('.nav-display');
+    Nav.innerHTML += `<div class="default-proj-class">
+            <p>Project1 <button class="Load-Project">Load</button>
+            <button class="Delete-Project-default">Delete</button>
+            </p> </div>`;
+    }
+
 
 export default class ToDo {
     constructor(title,description,dueDate,priority) {
@@ -66,9 +109,13 @@ ButtonToAddTasks.addEventListener("click", () => {
     }
 
 });
+
+
 // button for ToDo
 document.addEventListener("click", function(event) {
     if (event.target.matches(".ADDTODO")) {
+        if (!document.querySelector('.default-proj-class')&& !document.querySelector('.projectclass')) {
+            alert("You need to create a project first"); return;}
        const Title = document.querySelector('.title');
        const Description = document.querySelector('.description');
        const dueDate = document.querySelector('.date');
@@ -79,12 +126,14 @@ document.addEventListener("click", function(event) {
        }
        const NewToDo = CreateClass(Title.value,Description.value,dueDate.value,prio.value);
        ProjectStorage[selectedProject].ToDos.push(NewToDo);
-       
+       console.log(selectedProject, ProjectStorage);
        const item = fillHTMLwithToDo(NewToDo);
        if (item !== false) { Title.value = ToDocounting(); };
-       saveProjectsToLocalStorage(ProjectStorage);
+       console.log(selectedProject, ProjectStorage);
+       saveProjectsToLocalStorage(selectedProject,ProjectStorage);
    }
 });
+
 
 document.addEventListener("click", function(event) {
     if (event.target.matches("#cancel")) {
@@ -130,20 +179,11 @@ document.addEventListener("click", function(event) {
         console.log(currentCompleteTasks)
         
         event.target.closest('.BoxContainingAClass').remove();
-        saveProjectsToLocalStorage(ProjectStorage);
+        saveProjectsToLocalStorage(selectedProject,ProjectStorage);
     }
     //Complete button//
 });
 
-function fillCompletes(completewithoutbutw) {
-    const String = completewithoutbutw.toString();
-    const TempArray = array;
-    
-    array.splice(0,0,String);
-    array.push(TempArray);
-    array.pop();array.pop();
-    return array;
-}
 SlideTheNav();
 // nav buttons projects
 let selectedProject = 'Project1';
@@ -157,20 +197,31 @@ CreateProjButton.addEventListener("click", () => {
    const project1 = new Projects(ProjectName);
     ProjectStorage[ProjectName] = project1;
     const box = document.querySelector('.box-with-todoboxes');
+    const CompleteBoxes5 = document.querySelectorAll(".queryALL");
+    CompleteBoxes5.forEach((target) => {
+        target.innerHTML = '';
+    });
     box.innerHTML = '';
     i=2;
-    saveProjectsToLocalStorage(ProjectStorage);
+    saveProjectsToLocalStorage(selectedProject,ProjectStorage);
    }
    
 });
 document.addEventListener("click", function(event) {
     if (event.target.matches(".Delete-Project")) {
+        console.log(ProjectStorage.length);
+
+
         const box = document.querySelector('.box-with-todoboxes');
         const CompleteBoxes5 = document.querySelectorAll(".queryALL");
         CompleteBoxes5.forEach((target) => {
             target.innerHTML = '';
         });
-        if (ProjectStorage[selectedProject] === ProjectStorage[event.target.closest('p').innerText.trim().replace('Load', '').replace('Delete', '').trim()]) {box.innerHTML = '';};
+        if (ProjectStorage[selectedProject] === ProjectStorage[event.target.closest('p').innerText.trim().replace('Load', '').replace('Delete', '').trim()]) 
+            {
+                box.innerHTML = ''; 
+                
+            };
          i=2;
          event.target.closest('.projectclass').remove();
             delete ProjectStorage[event.target.closest('p').innerText.trim().replace('Load', '').replace('Delete', '').trim()];
@@ -197,6 +248,7 @@ document.addEventListener("click", function(event) {
             item.innerHTML = '';
         }
         selectedProject = event.target.closest('p').innerText.trim().replace('Load', '').replace('Delete', '').trim();
+        
         box.innerHTML = '';
         
         for(let j=0;j<ProjectStorage[selectedProject].ToDos.length;j++) {
@@ -205,13 +257,23 @@ document.addEventListener("click", function(event) {
         fillHTMLwithCompletedTasks(ProjectStorage[selectedProject].CompleteTasks);
         
         i=2; 
+        if (document.querySelector('.formstyle') !== null) {
+            document.body.removeChild(document.querySelector('.formstyle'));
+        }
     }
 });
 
 
-const tempbutton = document.querySelector('.temp-button');
-tempbutton.addEventListener('click',()=>{
-    saveProjectsToLocalStorage(ProjectStorage);
-    //localStorage.clear();
-});
 
+
+
+//detele project from local storage 
+document.addEventListener("click", function(event) {
+    if (event.target.matches(".Delete-Project") || event.target.matches(".Delete-Project-default")) {
+        const item = event.target.closest('p').innerText.trim().replace('Load', '').replace('Delete', '').trim();
+        
+        
+      localStorage.removeItem(JSON.stringify(item));
+        
+        
+    }});

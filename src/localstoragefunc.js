@@ -1,8 +1,9 @@
-export function saveProjectsToLocalStorage(ProjectStorage) {
-    localStorage.setItem('projects', JSON.stringify(ProjectStorage));
+export function saveProjectsToLocalStorage(ProjectName,ProjectStorage) {
+    const findProject = Object.keys(ProjectStorage).find(key => key === ProjectName);
+    console.log(findProject);
+
+    if (findProject) {
+        localStorage.setItem(JSON.stringify(ProjectName), JSON.stringify(ProjectStorage[findProject]));
+    }
 }
 
-export function getProjectsFromLocalStorage() {
-    const projects = localStorage.getItem('projects');
-    return projects ? JSON.parse(projects) : [];
-}
